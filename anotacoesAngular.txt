@@ -1,0 +1,62 @@
+
+Anota��es Angular - 16
+
+	Verificar vers�o: ng v
+	
+	Criar app
+		ng new app-name --no-strict --standalone false --routing false
+		
+		Para executar (dentro do docker trocar host e desabilitar host check)
+		ng serve --host 0.0.0.0 --disable-host-check --poll 2000
+		
+		sudo kill `sudo lsof -t -i:4200`
+		npx kill-port 4200
+		
+		ps     lista os processos para obter id
+		kill -9 (id)
+		
+		npm install --legacy-peer-deps
+		
+	----------------------------------------------
+	
+	Add bootstrap
+		npm i -save bootstrap@3
+		em angular.json, architect/build/styles, adicionar no array:
+		
+    Ciclo de inicio
+
+		- index.html tem o componente raiz app-root
+		- Roda main.ts, dizendo que o bootstrap module é AppModule
+		- AppModule é um NgModule, que tem como bootstrap component AppComponent
+		- AppComponent se identifica como app-root
+		- Ali é renderizado o AppComponent
+
+	Componente Basico
+		import { Component } from "@angular/core";
+
+		@Component({
+			selector: 'app-server',
+			templateUrl: './server.component.html'
+		})
+		export class ServerComponent{
+
+		}
+	E para usar o componente...
+		Tem que enfiar o component no modulo (AppModule)
+		na seção declarations 
+
+	Criar componente usando cli
+	ng g c <componente>
+
+
+	Propriedades básicas do @Component
+		- selector
+		- template ou templateUrl
+		- styles[] ou styleUrls[]
+
+	Sobre o selector:
+		selector: app-server       usa <app-server> </app-server>
+		selector: [app-server]     usa <div app-server> </div>
+		selector: .app-server      usa <div class="app-server"> </div>
+		
+			
