@@ -1,0 +1,20 @@
+docker-compose up -d  
+
+Rodar Docker ps para obter ids 
+CONTAINER ID   IMAGE           COMMAND                  CREATED         STATUS         PORTS                    NAMES
+2af2a2cd0c2a   app01-sk-ng16   "docker-entrypoint.sâ€¦"   2 minutes ago   Up 2 minutes   0.0.0.0:4200->4200/tcp   app01-sk-ng16-1
+
+>docker exec -it 2af2 bash
+
+
+
+talvez necessario linux
+	sudo chown -R nomeuser  /home/nomeuser/Training/Angular/v16/p01
+	
+	
+	
+	
+------------
+No windows
+   ** rodou infinitamente mais rápido no wsl
+   
