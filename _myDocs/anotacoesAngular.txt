@@ -73,5 +73,13 @@ Anota��es Angular - 16
 
 	Diretivas
 		- Podem ser customizadas: @Directive
+        - Existentes no angular
+			<p *ngIf="serverCreated">Servidor {{serverName}} criado.</p>
 
+		** Angular 17
+		@if (someCondition) {
+ 		 <p>Only visible if 'someCondition' is true</p>
+		}
+
+		
 		
