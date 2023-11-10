@@ -59,4 +59,19 @@ Anota��es Angular - 16
 		selector: [app-server]     usa <div app-server> </div>
 		selector: .app-server      usa <div class="app-server"> </div>
 		
-			
+	Bindings
+		{{}}
+			<p>The Server ID {{serverId}} is {{getServerStatus()}}</p>
+		[]
+			<button class="btn" [disabled]="!allowNewServer">Novo Servidor</button>
+		()
+			<button class="btn" [(click)="onCreateServer()" >Novo Servidor</button>
+			<input type="text" class="form-control" (input)="onUpdateServerName($event)">
+		[()]
+			ngModel tem que importar FormsModule de @angular/forms
+			<input type="text" class="form-control" [(ngModel)]="serverName">
+
+	Diretivas
+		- Podem ser customizadas: @Directive
+
+		

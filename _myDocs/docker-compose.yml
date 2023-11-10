@@ -1,6 +1,6 @@
 version: '3'
 services:
-  sk-ng16:
+  sk-ng:
     build:
       context: .
       dockerfile: Dockerfile

@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:20-bullseye
+FROM node:20-alpine
 
 # Set the working directory in the container
 WORKDIR /app
@@ -13,3 +13,4 @@ EXPOSE 4200
 # Start a shell to allow interactive development
 CMD ["/bin/bash"]
 
+#Instalar o git 
