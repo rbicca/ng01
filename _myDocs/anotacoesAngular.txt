@@ -20,7 +20,7 @@ Anota��es Angular - 16
 	----------------------------------------------
 	
 	Add bootstrap
-		npm i -save bootstrap@3
+		npm i --save bootstrap@3
 		em angular.json, architect/build/styles, adicionar no array:
 		
     Ciclo de inicio
@@ -46,7 +46,7 @@ Anota��es Angular - 16
 		na seção declarations 
 
 	Criar componente usando cli
-	ng g c <componente>
+	ng g c <componente> --skip-tests
 
 
 	Propriedades básicas do @Component
