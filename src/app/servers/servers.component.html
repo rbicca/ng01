@@ -9,5 +9,6 @@
 <hr>
 <!-- <p>{{serverCreationStatus}}</p> -->
 <p *ngIf="serverCreated">Servidor {{serverName}} criado.</p>
-<app-server></app-server>
-<app-server></app-server>
+
+<app-server *ngFor="let s of servers"></app-server>
+

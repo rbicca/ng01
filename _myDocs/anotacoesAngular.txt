@@ -81,5 +81,17 @@ Anota��es Angular - 16
  		 <p>Only visible if 'someCondition' is true</p>
 		}
 
-		
-		
+		<p
+    		[ngStyle]="{backgroundColor : getColor()}"
+    		[ngClass]="{online : serverStatus === 'online'}"
+    	>The Server ID {{serverId}} is {{getServerStatus()}}</p>
+
+
+		*ngFor ==> bah ... dentro do componente ... q estranho .. virei reactizero
+		<app-server *ngFor="let s of servers; let i = index"></app-server>
+
+		** Angular 17
+	   	@for(i of items; track i.id){
+			<li>{{i.title}}</li>
+		}
+	
