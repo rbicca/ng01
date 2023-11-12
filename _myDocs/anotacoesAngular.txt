@@ -1,5 +1,5 @@
 
-Anota��es Angular - 16
+Anota��es Angular - 17
 
 	Verificar vers�o: ng v
 	
@@ -37,6 +37,8 @@ Anota��es Angular - 16
 		@Component({
 			selector: 'app-server',
 			templateUrl: './server.component.html'
+			encapsulation:  ** mudar comportamento do view encapsulation
+			                emulated, none or shadowDOM
 		})
 		export class ServerComponent{
 
@@ -94,4 +96,32 @@ Anota��es Angular - 16
 	   	@for(i of items; track i.id){
 			<li>{{i.title}}</li>
 		}
-	
+	----------------------------------------------
+
+	Propriedades
+		@Input() prop;
+		<xxx  [prop]="valor" >
+		@Input('nomeExterno') xxx;
+
+	Eventos
+		1. Criar o evento 
+		   serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();
+
+		2. Disparar o evento
+			this.serverCreated.emit({
+      			serverName: this.newServerName,
+      			serverContent: this.newServerContent
+    		});
+		3. Tornar o evento escutável
+		   @Output() serverCreated = new EventEmitter<{serverName: string, serverContent: string}>();	
+
+		4. Escutar o evento a partir de um component pai
+		   <app-cockpit (serverCreated)="onServerAdded($event)" />
+
+	----------------------------------------------
+
+	LocalReference
+	  Permite passar referencia do componente inteiro ao TS
+	  <input type="text" #nomeInput />
+	  no TS pegar em algum parametro, nomeInput.value
+	  
