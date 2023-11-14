@@ -122,6 +122,32 @@ Anota��es Angular - 17
 
 	LocalReference
 	  Permite passar referencia do componente inteiro ao TS
+	  Só serve para passar como parametro para o TS. Não permite referenciar direto
+
 	  <input type="text" #nomeInput />
 	  no TS pegar em algum parametro, nomeInput.value
-	  
+	
+	@ViewChild -- aponta para o componente inteiro
+	Serve para referenciar direto
+
+	<input type="text" class="form-control" #serverContentInput>
+	@ViewChild('serverContentInput', { static: true }) serverContentInput: ElementRef;
+	this.serverContentInput.nativeElement.value
+
+	@ContentChild(ref, ...)
+	Serve para acessar referencia de componente projetado dentro do <ng-content>
+	
+	----------------------------------------------
+	<ng-content>   --> Semelhante ao props.children do React
+	----------------------------------------------
+
+	Ciclo de vida
+		constructor()
+		ngOnChanges (changes: SimpleChanges)
+		ngOnInit
+		ngDocCheck
+		ngAfterContentInit
+		ngAfterContentChecked
+		ngAfterViewInit
+		ngAfterViewChecked
+		ngOnDestroy
