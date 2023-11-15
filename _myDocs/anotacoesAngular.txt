@@ -136,7 +136,7 @@ Anota��es Angular - 17
 
 	@ContentChild(ref, ...)
 	Serve para acessar referencia de componente projetado dentro do <ng-content>
-	
+
 	----------------------------------------------
 	<ng-content>   --> Semelhante ao props.children do React
 	----------------------------------------------
@@ -151,3 +151,24 @@ Anota��es Angular - 17
 		ngAfterViewInit
 		ngAfterViewChecked
 		ngOnDestroy
+	----------------------------------------------
+
+	Diretivas persoanlizadas -- podemos criar nossos proprios atributos
+		@Directive({ selector: '[appStabylo] })
+		export class StabyloDirective  implements OnInit {
+
+  			constructor(private elRef: ElementRef,  private renderer: Renderer2) { }
+
+  			ngOnInit(): void {
+    			this.renderer.setStyle(this.elRef.nativeElement, 'background-color', 'aqua');
+  			}
+		}
+
+		Neste caso injetamos um ElementRef para apontar para o componente que está utilizando
+		e injetamos Renderer2 para interagir com ele e modificar estilo, de acordo com
+		o engine do angular.
+
+		//Conseguimos receber eventos do componente host referenciado
+		@HostListener('mouseenter') mouseover(e: Event){ }
+
+
