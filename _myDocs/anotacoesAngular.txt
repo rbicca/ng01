@@ -171,4 +171,14 @@ Anota��es Angular - 17
 		//Conseguimos receber eventos do componente host referenciado
 		@HostListener('mouseenter') mouseover(e: Event){ }
 
+		@HostBinding(propriedade) - liga uma propriedade nossa à propriedade do objeto host
+		@HostBinding('style.backgroundColor') corDeFundo: string;
 
+		Podemos passar propriedades (Inputs()) normlamente para as nossas Diretivas
+
+		Existe também:
+			<div [ngSwitch]="variavel">
+				<p *ngSwitchCase="5">Variavel é 5</p>
+				<p *ngSwitchCase="10">Variavel é 10</p>
+				<p *ngSwitchDefault">Padrao 100</p>
+			</div>
