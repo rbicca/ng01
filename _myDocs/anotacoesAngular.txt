@@ -117,7 +117,6 @@ Anota��es Angular - 17
 
 		4. Escutar o evento a partir de um component pai
 		   <app-cockpit (serverCreated)="onServerAdded($event)" />
-
 	----------------------------------------------
 
 	LocalReference
@@ -182,3 +181,22 @@ Anota��es Angular - 17
 				<p *ngSwitchCase="10">Variavel é 10</p>
 				<p *ngSwitchDefault">Padrao 100</p>
 			</div>
+
+	----------------------------------------------
+
+	Services
+		- Classe simple, com funções para ser usada via Injeção de Dependencia (DI)
+		- Injetamos dependencia via constructor. Atalhozinho maroto facilita para não criar prop
+		  constructor(private loggingService: LoggingService){}
+		- Tem que informar o tipo em providers:[] do @Component
+		  CUIDADO: colocar somente no provider do PAI, que vai dividir a instancia com os filhos
+		  provider[] do Modulo é o nivel mais alto.
+
+		Outra alternativa --> função inject do angular
+		1. Declarar prop     private loggingService?: LoggingService
+		2. injetar --> this.loggingService = inject(LoggingService)
+
+		Para poder injetar serviço dentro de serviço temos que usar @Injectable() na classe.
+	----------------------------------------------
+
+	
