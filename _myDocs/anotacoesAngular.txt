@@ -199,4 +199,41 @@ Anota��es Angular - 17
 		Para poder injetar serviço dentro de serviço temos que usar @Injectable() na classe.
 	----------------------------------------------
 
-	
+	Rotas
+		1. Configuramos objetos de @angular/router
+		const appRoutes: Routes = [
+  			{ path: '', component: HomeComponent },
+  			{ path: 'users', component: UsersComponent },
+  			{ path: 'servers', component: ServersComponent },
+		];
+		2. Registramos a rota importando RouterModule no NgModule
+			RouterModule.forRoot(appRoutes)
+		
+		3. Exibir o componente da rota em um <router-outlet>
+
+		4. Navegar via link ==> usar atributo routerLink=""
+		   class
+		   routerLinkActive="css class active"
+		   para evitar "Sub caminho" contido na rota
+		   [routerLinkActiveOptions]="{ exact: true }
+
+		5. Navegar programaticamente => 
+		   Injeta-se o router
+		   constructor(private router: Router){}  private route: ActivatedRoute 
+		   Navega-se
+		   this.router.navigate(['/servers']);
+
+		6. Router params
+		   { path: 'users/:id', component: UsersComponent },
+		   
+		   Injeta-se ActivatedRoute  (no ngOnInit por exemplo)
+		   id = this.route.snapshot.params['id']
+
+			Porém, se os valores dos parametros mudam, e a ROTA NAO, nao atualiza automaticamente.
+			Tem que assinar o observable
+			    this.route.params.subscribe((e: Params)=>{
+        			this.user.id = e['id'];
+        			this.user.name = e['name'];
+    			});
+
+			
