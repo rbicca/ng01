@@ -248,5 +248,28 @@ Anota��es Angular - 17
     		console.log(this.route.snapshot.fragment);
 								ou
 					usar como observable
+		
+		7. Nested Routes     -- Não esquecer de colocar um outlet para receber
+			const appRoutes: Routes = [
+				{ path: '', component: HomeComponent },
+				{ path: 'users', component: UsersComponent, children: [
+					{ path: ':id/:name', component: UserComponent },
+				]},
+				{ path: 'servers', component: ServersComponent, children:[
+					{ path: ':id', component: ServerComponent },
+					{ path: ':id/edit', component: EditServerComponent }
+				]},
+			];
 
+		Exemplo imendando uma rota em cima da rota atual
+		onEdit(){
+    		this.router.navigate(['edit'],{ relativeTo: this.route } );
+  		}
+		* Importante: para preservar a query string adicionar queryParamsHandling: 'preserve'
+		  no objeto de extras do navigate
+
+		8. Redirecionamento -- cuidando para deixar no fim
+		   { path: '**', redirectTo: '/not-found'},
+		   Cuidado também com o comportamento padrão: match por prefixo. - como mudar?
+		   { path: '', redirectTo: '/somewhere-else', pathMatch: 'full' }
 			
