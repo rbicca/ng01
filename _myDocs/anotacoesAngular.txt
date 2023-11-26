@@ -249,6 +249,9 @@ Anota��es Angular - 17
 								ou
 					usar como observable
 		
+			Podemos passar objeto data na rota para passar parametros se necessário
+			 { path: 'not-found', component: ErrorPageComponent, data: { message: 'Page not found!' }},
+
 		7. Nested Routes     -- Não esquecer de colocar um outlet para receber
 			const appRoutes: Routes = [
 				{ path: '', component: HomeComponent },
@@ -272,4 +275,20 @@ Anota��es Angular - 17
 		   { path: '**', redirectTo: '/not-found'},
 		   Cuidado também com o comportamento padrão: match por prefixo. - como mudar?
 		   { path: '', redirectTo: '/somewhere-else', pathMatch: 'full' }
-			
+
+		9. Guardas  => código antes da rota ou depois da saida dela
+		 	Trata-se de uma classe que deve implementar canActivate e/ou canActivateChild
+			É nesses métodos que verificamos a autenticação, validamos e redirecionamos se for o caso.
+			Depos colocar na rota    canActivateChild: [AuthGuard],  ou child
+			Não esquecer de prover os serviços no módulo
+
+			ao contrário, podemos checar a saída do componente com CanDeactivate
+
+		10. Resolver
+			Podemos carregar dados antes mesmo da rota implmentando um Resolver
+			{ path: ':id', component: ServerComponent , resolve: { server: ServerResolver }}
+			Ai, no ngOnInit, dá para pegar os dados já carregados em this.route.data.subscribe()
+		
+		** Importante **
+		No deploy, o webserver tem que estar configurado para, no caso de 404, retornar index.html
+		ou use { useHash : true } no  RouterModule.forRoot()
