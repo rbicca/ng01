@@ -1,0 +1,35 @@
+Anotações Angular - 17 - II
+
+    - Observables
+        Vem do pacote rxjs.
+            Exemplo simples:
+            interval(1000).subscribe(c => {
+                console.log(c);
+            });
+        Devemos matar a assinatura no ngOnDestroy() com unsubscribe(); para evitar vazamento.
+
+        Criar um custom Observable.
+        new Observable(), passando função com o observer como parâmetro, onde podemos:
+            observer.next()     -- e passar valores do andamento
+            observer.error()    -- já viu
+            observer.complete() -- informa que agoia deu.
+                Depois de lançar um complete, as emissões do observer param.
+
+        .subscribe(fnNext(), fnError(), fnComplete())
+
+        Operadores:
+        Pipe ** aplica middlewares antes, transformando o resultado do subscribe.
+        Podemos passar vários operadores para o pipe, como por exemplo o map.
+
+            this.secSub =  myTimer.pipe(map((data: number) => {
+                return 'Round ' + (data + 1);
+            })).subscribe(t => {
+                console.log(t);
+            });
+        Outro exemplo de operador: filter()
+
+
+
+
+
+
