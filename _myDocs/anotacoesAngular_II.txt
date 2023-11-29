@@ -28,7 +28,9 @@ Anotações Angular - 17 - II
             });
         Outro exemplo de operador: filter()
 
-
+        Subject: Como um broadcast - dispara para todos.
+                O "next" ocorre na propria subject 
+                
 
 
 
