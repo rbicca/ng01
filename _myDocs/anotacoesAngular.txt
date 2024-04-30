@@ -22,6 +22,7 @@ Anota��es Angular - 17
 	Add bootstrap
 		npm i --save bootstrap@3
 		em angular.json, architect/build/styles, adicionar no array:
+		"node_modules/bootstrap/dist/css/bootstrap.min.css"
 		
     Ciclo de inicio
 

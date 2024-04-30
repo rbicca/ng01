@@ -31,7 +31,113 @@ Anotações Angular - 17 - II
         Subject: Como um broadcast - dispara para todos.
                 O "next" ocorre na propria subject 
                 
+    - Forms
+        *** Opção 1: TEMPLATE DRIVE  (TD) ***
+        *************************************
+
+        Primeiro de tudo: <form> sem submit
+        Segundo de tudo: em app.module, imports: BrowserModule e FormsModule
+        Terceiro: em um input, por exemplo, colocar name e ngModel sem [ nem (
+        Quarto: apontar para a função submit:  <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+        E pegar na função:
+              onSubmit(form: NgForm){
+                    console.log('submited!', form);
+                }
+        ... outra alternativa
+
+            @ViewChild('f') form: NgForm;
+            e usar form normalmente em qualquer função.
+
+            ** util para pegar os valores ANTES do submit
+
+        ----- Validadores -----
+        Alguns padrao: required, email
+        Olha que teta no CSS
+        input.ng-invalid.ng-touched{
+         border: 1px solid red;
+        }
+
+        Colocar um ref #email="ngModel" ajuda a buscar dados de validação sobre o controle
+        <input type="email" id="email" class="form-control" ngModel name="txtEmail" required email #email="ngModel">
+        <span  *ngIf="!email.valid && email.touched" class="help-block">Please enter a valid e-mail!</span>
+        -----
+
+        Para setar valores do form, via código
+        @ViewChild('f') signupForm: NgForm;
+        this.signupForm.setValue({
+            userData: {
+                t...}});
+
+        outra
+
+        //Essa forma substitui somente os informados
+        this.signupForm.form.patchValue();
+
+          onSubmit(form: NgForm){
+                this.user.username = this.signupForm.value.userData.txtName;
+                this.user.email = this.signupForm.value.userData.txtEmail;
+                this.user.secretQuestion = this.signupForm.value.cmbSecret;
+                this.user.answer = this.signupForm.value.questionAnswer;
+                this.user.gender = this.signupForm.value.gender;
+                this.submitted = true;
+                this.signupForm.reset();   ** baita dica
+            }
+
+    
+        *** Opção 2: REACTIVE DRIVEN  (RD) ***
+        *************************************
+
+        Começamos importando ReactiveFormsModule em app.module.
+        Depois declaramos signupForm: FormGroup no componente e configura
+        Em <form [FormGroup]="signupForm" (ngSubmit)="onSubmit()">
+        No input colocar formControlName="username"
+        Ser feliz no submit, pois tudo está em signupForm
+
+        ----- Validadores -----
+        Configurados no segundo parametro do formControlName
+        'email': new FormControl(null, [Validators.required, Validators.email]),
+        @if(!signupForm.get('email').valid && signupForm.get('email').touched){
+            <span class="help-block">Please enter a valid email</span>
+        }
+        E para testar o form, como um todo
+        @if(!signupForm.valid && signupForm.touched){
+          <span class="help-block">Please enter all informatiom</span>
+        }
+
+        Podemos usar FormGroup / FormGroupName também
+
+        Podemos add controles dinamicamente em um FormArray
+
+        Dá para criar validadores customizados
+        vldForbiddenNames(control: FormControl): {[s:string]: boolean}{
+            if(this.forbiddenUsernames.indexOf(control.value)){
+                return {'forbiddenName': true};
+            }
+            return null;
+        }
+
+        e no objeto de configuração do form, passar a função.
+        Mas importante: não esquecer do bind this
+        this.signupForm = new FormGroup({
+            'username': new FormControl(null, [Validators.required, this.vldForbiddenNames.bind(this)]),
+            'email': new FormControl(null, [Validators.required, Validators.email]),  
+            'gender': new FormControl('male'),
+            'hobbies': new FormArray([])
+        });
+
+        É possivel criar async Validators
+
+        Podemos assinar para ouvir as mudanças de valores ou status
+        this.signupForm.valueChanges.subscribe((value) => );
+        this.signupForm.statusChanges.subscribe((value) => );
+
+        Da mesma forma podemos usar setValue e patchValue
+
+        
 
 
 
 
+
+
+        
